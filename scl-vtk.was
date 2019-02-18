@@ -1,0 +1,44 @@
+# geometrical parameters
+
+FUNCTION od(s) DATA {    # outside diameter in mm a function of the nominal size in inches
+1 33.4
+2 60.3
+3 88.9
+4 114.3
+5 141.3
+6 168.3
+8 219.1
+10 273.0
+12 323.8
+}
+
+FUNCTION th(s) DATA {    # pipe thickness in mm for schedule 80
+1  4.55
+2  5.54
+3  7.62
+4  8.56
+5  9.53
+6  10.97
+8  12.70
+10 15.05
+12 17.48
+}
+
+# main pipe is 12-inch schedule 80
+b = 0.5*od(12)
+a = b-th(12)
+
+
+td = $1
+
+# branch's outer and internal diameter
+d = 0.5*od(td)
+c = d-th(td)
+
+PRINT d+b-a 0 +a   
+PRINT d+b-a +a 0   
+PRINT d+b-a 0 -a   
+
+PRINT d+b-a 0 +b
+PRINT d+b-a +b 0
+PRINT d+b-a 0 -b
